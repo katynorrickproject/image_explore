@@ -19,10 +19,19 @@ def load_dicoms(path):
 
     return x
 
+def check_dicoms(dicom_set):
+    for index,dcm in enumerate(dicom_set):
+        try:
+            dcm[0x00100010]
+        except:
+            dicom_set.pop(index)
+            check_dicoms(dicom_set)
+    return dicom_set
+
 def get_train():
     train_url = 'Data/dicom-images-train'
-    return load_dicoms(train_url)
+    return check_dicoms(load_dicoms(train_url))
 
 def get_test():
     test_url = 'Data/dicom-images-test'
-    return load_dicoms(test_url)
+    return check_dicoms(load_dicoms(test_url))
