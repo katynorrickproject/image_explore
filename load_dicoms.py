@@ -1,5 +1,10 @@
+''' To load dicom training data use get_train()
+To load dicom test data use get_test() '''
+
 import os
 import pydicom
+
+
 
 def load_dicoms(path):
     ## Adds a '/' to the end of the file path if it isn't already there
